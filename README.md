@@ -19,3 +19,15 @@ conda create -n kraken2
 conda activate kraken2
 conda install -c bioconda kraken2 
 ```
+## Kraken 2 Database
+The kraken2 [PlusPF](https://benlangmead.github.io/aws-indexes/k2) database (contains archaea, bacteria, viruses, plasmids, human, UniVec_Core, protozoa and fungi) is located in `/vortexfs1/omics/env-bio/collaboration/databases/`.
+
+You can find all the information about the database:
+``` 
+kraken2-inspect --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_pluspf/
+```
+
+## Assigning taxonomic information to paired-end reads
+We will use the small subsets of reads we used for the assembly (located in `/vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/`).
+
+Check the kraken2 help page. Remember to start an `srun` before executing the command. Request 4 nodes and 80Gb of memory.
