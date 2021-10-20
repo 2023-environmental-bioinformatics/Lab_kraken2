@@ -12,3 +12,10 @@ At the core of [Kraken](https://genomebiology.biomedcentral.com/articles/10.1186
 
 ![alt text](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs13059-019-1891-0/MediaObjects/13059_2019_1891_Fig1_HTML.png?as=webp)
 *Differences in operation between the two versions of Kraken. a Both versions of Kraken begin classifying a k-mer by computing its ℓ bp minimizer (highlighted in magenta). The default values of k and ℓ for each version are shown in the figure. b Kraken 2 applies a spaced seed mask of s spaces to the minimizer and calculates a compact hash code, which is then used as a search query in its compact hash table; the lowest common ancestor (LCA) taxon associated with the compact hash code is then assigned to the k-mer. In Kraken 1, the minimizer is used to accelerate the search for the k-mer, through the use of an offset index and a limited-range binary search; the association between k-mer and LCA is directly stored in the sorted list. c Kraken 2 also achieves lower memory usage than Kraken 1 by using fewer bits to store the LCA and storing a compact hash code of the minimizer rather than the full k-mer. d Impact on speed, memory usage, and prokaryotic genus F1-measure in Kraken 2 when changing k with respect to ℓ (ℓ = 31, s = 7 for all three graphs). e Impact on prokaryotic genus sensitivity and positive predictive value (PPV) when changing the number of minimizer spaces s (k = 35, ℓ = 31 for both graphs). In d and e, the data are from our parameter sweep results in Additional file 1: Table S2, and the default values of the independent variables for Kraken 2 are marked with a circle.*
+
+## Install kraken2
+```
+conda create -n kraken2
+conda activate kraken2
+conda install -c bioconda kraken2 
+```
