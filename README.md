@@ -10,7 +10,8 @@ At the core of [Kraken](https://genomebiology.biomedcentral.com/articles/10.1186
 
 [Kraken 2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0) improved upon Kraken 1 by reducing memory usage by 85%, allowing greater amounts of reference genomic data to be used, while maintaining high accuracy and increasing speed fivefold. Kraken 2 also introduces a translated search mode, providing increased sensitivity in viral metagenomics analysis.
 
-![alt text](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs13059-019-1891-0/MediaObjects/13059_2019_1891_Fig1_HTML.png?as=webp)
+![alt text](https://github.com/2021-environmental-bioinformatics/Lab_kraken2/blob/main/images/Kraken2.png)
+
 *Differences in operation between the two versions of Kraken. a Both versions of Kraken begin classifying a k-mer by computing its ℓ bp minimizer (highlighted in magenta). The default values of k and ℓ for each version are shown in the figure. b Kraken 2 applies a spaced seed mask of s spaces to the minimizer and calculates a compact hash code, which is then used as a search query in its compact hash table; the lowest common ancestor (LCA) taxon associated with the compact hash code is then assigned to the k-mer. In Kraken 1, the minimizer is used to accelerate the search for the k-mer, through the use of an offset index and a limited-range binary search; the association between k-mer and LCA is directly stored in the sorted list. c Kraken 2 also achieves lower memory usage than Kraken 1 by using fewer bits to store the LCA and storing a compact hash code of the minimizer rather than the full k-mer. d Impact on speed, memory usage, and prokaryotic genus F1-measure in Kraken 2 when changing k with respect to ℓ (ℓ = 31, s = 7 for all three graphs). e Impact on prokaryotic genus sensitivity and positive predictive value (PPV) when changing the number of minimizer spaces s (k = 35, ℓ = 31 for both graphs). In d and e, the data are from our parameter sweep results in Additional file 1: Table S2, and the default values of the independent variables for Kraken 2 are marked with a circle.*
 
 ## Install kraken2
@@ -30,4 +31,10 @@ kraken2-inspect --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_
 ## Assigning taxonomic information to paired-end reads
 We will use the small subsets of reads we used for the assembly (located in `/vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/`).
 
-Check the kraken2 help page. Remember to start an `srun` before executing the command. Request 4 nodes and 80Gb of memory.
+Check the kraken2 help page. Remember to start an `srun` before executing the command. Request 4 nodes and 180Gb of memory.
+
+
+# Lab kaiju
+Another popular program that uses k-mers to assign taxonomic information on short reads is [kaiju](https://github.com/bioinformatics-centre/kaiju) described in detail in [Menzel, P. et al. (2016) Fast and sensitive taxonomic classification for metagenomics with Kaiju](https://www.nature.com/articles/ncomms11257).
+
+![alt text]()
