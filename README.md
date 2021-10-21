@@ -35,7 +35,23 @@ Check the kraken2 help page. Remember to start an `srun` before executing the co
 
 
 # Lab kaiju
-Another popular program that uses k-mers to assign taxonomic information on short reads is [kaiju](https://github.com/bioinformatics-centre/kaiju) described in detail in [Menzel, P. et al. (2016) Fast and sensitive taxonomic classification for metagenomics with Kaiju](https://www.nature.com/articles/ncomms11257).
+Another popular program that uses k-mers to assign taxonomic information on short reads is [kaiju](https://github.com/bioinformatics-centre/kaiju) described in detail in [Menzel, P. et al. (2016) (https://www.nature.com/articles/ncomms11257).
+
+![alt text](https://github.com/2021-environmental-bioinformatics/Lab_kraken2/blob/main/images/Kaiju1.png)
+*First, a sequencing read is translated into the six possible reading frames and the resulting amino acid sequences are split into fragments at stop codons. Fragments are then sorted either by their length (MEM mode) or by their BLOSUM62 score (Greedy mode). This sorted list of fragments is then searched against the reference protein database using the backwards search algorithm on the BWT. While MEM mode only allows exact matches, Greedy mode extends matches at their left end by allowing substitutions. Once the remaining fragments in the list are shorter than the best match obtained so far (MEM) or cannot achieve a better score (Greedy), the search stops and the taxon identifier of the corresponding database sequence is retrieved.*
 
 ![alt text](https://github.com/2021-environmental-bioinformatics/Lab_kraken2/blob/main/images/kaiju_comparison.png)
 *Percentage of classified reads in 10 real metagenomes for Kaiju MEM (m=12) and Greedy-5 (s=70), as well as Kraken (k=31). The Merged column shows the percentage of reads that are classified by at least one of Greedy-5 or Kraken. The Venn-Bar-diagram visualizes the percentage of reads that are classified either only by Kraken (blue), Greedy-5 (orange) or both (yellow). Grey bars in the human and cat samples denote the percentage of reads mapped to the respective host genomes.*
+
+## Install kaiju
+```
+conda create -n kaiju
+conda activate kaiju
+conda install -c bioconda kaiju 
+```
+
+## Kaiju Database
+The kaiju nr_euk database is located in `/vortexfs1/omics/env-bio/collaboration/databases/`.
+
+## Assigning taxonomic information to paired-end reads
+Check the kaiju help page and run the dataset we used above.
