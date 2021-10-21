@@ -31,10 +31,11 @@ kraken2-inspect --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_
 ## Assigning taxonomic information to paired-end reads
 We will use the small subsets of reads we used for the assembly (located in `/vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/`).
 
-Check the kraken2 help page. Remember to start an `srun` before executing the command. Request 4 nodes and 180Gb of memory.
+Check the kraken2 help page. Remember to start an `srun` before executing the command. Request 4 nodes and 180Gb of memory for 1h.
 
 
 # Lab kaiju
 Another popular program that uses k-mers to assign taxonomic information on short reads is [kaiju](https://github.com/bioinformatics-centre/kaiju) described in detail in [Menzel, P. et al. (2016) Fast and sensitive taxonomic classification for metagenomics with Kaiju](https://www.nature.com/articles/ncomms11257).
 
-![alt text]()
+![alt text](https://github.com/2021-environmental-bioinformatics/Lab_kraken2/blob/main/images/kaiju_comparison.png)
+*Percentage of classified reads in 10 real metagenomes for Kaiju MEM (m=12) and Greedy-5 (s=70), as well as Kraken (k=31). The Merged column shows the percentage of reads that are classified by at least one of Greedy-5 or Kraken. The Venn-Bar-diagram visualizes the percentage of reads that are classified either only by Kraken (blue), Greedy-5 (orange) or both (yellow). Grey bars in the human and cat samples denote the percentage of reads mapped to the respective host genomes.*
