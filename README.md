@@ -67,5 +67,15 @@ The kaiju nr_euk database is located in `/vortexfs1/omics/env-bio/collaboration/
 ## Assigning taxonomic information to paired-end reads
 Check the kaiju help page and run the dataset we used above.
 
-```kaiju -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -f /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nr_euk/kaiju_db_nr_euk.fm -i /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq -j /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq -z 4
+```
+kaiju -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -f /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nr_euk/kaiju_db_nr_euk.fm -i /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq -j /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq -z 4 > ERR3589584_kaiju.out
+```
+Add names
+```
+kaiju-addTaxonNames -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -n /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/names.dmp -i ERR3589584_kaiju.out -o ERR3589584_kaiju.out.names.out
+```
+
+Summarize 
+```
+kaiju2table -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -n /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/names.dmp -r class -o ERR3589584_kaiju.summary.tsv ERR3589584_kaiju.out
 ```
