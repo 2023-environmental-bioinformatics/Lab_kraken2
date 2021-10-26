@@ -33,6 +33,17 @@ We will use the small subsets of reads we used for the assembly (located in `/vo
 
 Check the kraken2 help page. Remember to start an `srun` before executing the command. Request 4 nodes and 180Gb of memory for 1h.
 
+## Practice run
+With default values
+```
+kraken2 --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_pluspf --threads 4 --output ERR3589584_default --report ERR3589584_default.kreport--paired /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq
+```
+Change the confidence score to 0,2
+```
+kraken2 --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_pluspf --threads 4 --output ERR3589584_0.2 --report ERR3589584_02.kreport --confidence 0.2 --paired /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq
+```
+## Examine the outfiles
+The standard output file (e.g. ERR3589584_default) report the hit or each read, while the report summarizes the hits by taxonomic rank.
 
 # Lab kaiju
 Another popular program that uses k-mers to assign taxonomic information on short reads is [kaiju](https://github.com/bioinformatics-centre/kaiju) described in detail in [Menzel, P. et al. (2016) (https://www.nature.com/articles/ncomms11257).
@@ -55,3 +66,6 @@ The kaiju nr_euk database is located in `/vortexfs1/omics/env-bio/collaboration/
 
 ## Assigning taxonomic information to paired-end reads
 Check the kaiju help page and run the dataset we used above.
+
+```kaiju -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -f /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nr_euk/kaiju_db_nr_euk.fm -i /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq -j /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq -z 4
+```
