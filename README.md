@@ -25,22 +25,22 @@ The kraken2 [PlusPF](https://benlangmead.github.io/aws-indexes/k2) database (con
 
 You can find all the information about the database:
 ``` 
-kraken2-inspect --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_pluspf/
+kraken2-inspect --db /proj/omics/env-bio/collaboration/databases/kraken2db_pluspf/
 ```
 
 ## Assigning taxonomic information to paired-end reads
-We will use the small subsets of reads we used for the assembly (located in `/vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/`).
+We will use the small subsets of reads we used for the assembly (located in `/proj/omics/env-bio/collaboration/sequences/kraken_example/`).
 
 Check the kraken2 help page. Remember to start an `srun` before executing the command. Request 4 nodes and 180Gb of memory for 1h.
 
 ## Practice run
 With default values
 ```
-kraken2 --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_pluspf --threads 4 --output ERR3589584_default --report ERR3589584_default.kreport--paired /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq
+kraken2 --db /proj/omics/env-bio/collaboration/databases/kraken2db_pluspf --threads 4 --output ERR3589584_default --report ERR3589584_default.kreport--paired /proj/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq /vortexfs1/omics/env-bio/collaboration/sequences/proj_example/ERR3589584_sub_2.fastq
 ```
-Change the confidence score to 0,2
+Change the confidence score to 0.2
 ```
-kraken2 --db /vortexfs1/omics/env-bio/collaboration/databases/kraken2db_pluspf --threads 4 --output ERR3589584_0.2 --report ERR3589584_02.kreport --confidence 0.2 --paired /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq
+kraken2 --db /proj/omics/env-bio/collaboration/databases/kraken2db_pluspf --threads 4 --output ERR3589584_0.2 --report ERR3589584_02.kreport --confidence 0.2 --paired /proj/omics/env-bio/collaboration/sequences/kraken_example/ERR3589584_sub_1.fastq /proj/omics/env-bio/collaboration/sequences/kraken_example/ERR3589584_sub_2.fastq
 ```
 ## Examine the outfiles
 The standard output file (e.g. ERR3589584_default) report the hit or each read, while the report summarizes the hits by taxonomic rank.
@@ -58,24 +58,24 @@ Another popular program that uses k-mers to assign taxonomic information on shor
 ```
 conda create -n kaiju
 conda activate kaiju
-conda install -c bioconda kaiju 
+mamba install -c bioconda kaiju 
 ```
 
 ## Kaiju Database
-The kaiju nr_euk database is located in `/vortexfs1/omics/env-bio/collaboration/databases/`.
+The kaiju nr_euk database is located in `/proj/omics/env-bio/collaboration/databases/`.
 
 ## Assigning taxonomic information to paired-end reads
 Check the kaiju help page and run the dataset we used above.
 
 ```
-kaiju -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -f /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nr_euk/kaiju_db_nr_euk.fm -i /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_1.fastq -j /vortexfs1/omics/env-bio/collaboration/sequences/megahit_example/ERR3589584_sub_2.fastq -z 4 > ERR3589584_kaiju.out
+kaiju -t /proj/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -f /proj/omics/env-bio/collaboration/databases/kaijudb/nr_euk/kaiju_db_nr_euk.fm -i /proj/omics/env-bio/collaboration/sequences/kraken_example/ERR3589584_sub_1.fastq -j /proj/omics/env-bio/collaboration/sequences/kraken_example/ERR3589584_sub_2.fastq -z 4 > ERR3589584_kaiju.out
 ```
 Add names
 ```
-kaiju-addTaxonNames -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -n /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/names.dmp -i ERR3589584_kaiju.out -o ERR3589584_kaiju.out.names.out
+kaiju-addTaxonNames -t /proj/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -n /proj/omics/env-bio/collaboration/databases/kaijudb/names.dmp -i ERR3589584_kaiju.out -o ERR3589584_kaiju.out.names.out
 ```
 
 Summarize 
 ```
-kaiju2table -t /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -n /vortexfs1/omics/env-bio/collaboration/databases/kaijudb/names.dmp -r class -o ERR3589584_kaiju.summary.tsv ERR3589584_kaiju.out
+kaiju2table -t /proj/omics/env-bio/collaboration/databases/kaijudb/nodes.dmp -n /proj/omics/env-bio/collaboration/databases/kaijudb/names.dmp -r class -o ERR3589584_kaiju.summary.tsv ERR3589584_kaiju.out
 ```
