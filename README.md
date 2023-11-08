@@ -18,7 +18,7 @@ At the core of [Kraken](https://genomebiology.biomedcentral.com/articles/10.1186
 ```
 conda create -n kraken2
 conda activate kraken2
-conda install -c bioconda kraken2 
+mamba install -c bioconda kraken2 
 ```
 ## Kraken 2 Database
 The kraken2 [PlusPF](https://benlangmead.github.io/aws-indexes/k2) database (contains archaea, bacteria, viruses, plasmids, human, UniVec_Core, protozoa and fungi) is located in `/vortexfs1/omics/env-bio/collaboration/databases/`.
